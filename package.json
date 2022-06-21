@@ -6,11 +6,12 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "commit": "git-cz"
   },
   "dependencies": {
-    "@commitlint/cz-commitlint": "^17.0.0",
     "ant-design-vue": "^1.7.8",
+    "commitizen": "^4.2.4",
     "core-js": "^3.8.3",
     "lint-staged": "^13.0.2",
     "prettier": "^2.7.1",
@@ -21,6 +22,7 @@
     "@babel/eslint-parser": "^7.12.16",
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
+    "@commitlint/cz-commitlint": "^17.0.0",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
@@ -37,5 +39,10 @@
   "lint-staged": {
     "*.vue": "eslint . --fix",
     "*.js": "eslint . --fix"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
   }
 }
