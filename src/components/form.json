@@ -1,0 +1,79 @@
+[{
+    "label": "名称",
+    "placeholder": "请输入名称",
+    "key": "name",
+    "type": "a-input",
+    "initValue": "",
+    "span": 10,
+    "rule": {
+        "required": true,
+        "min": 3,
+        "max": 36,
+        "message": "用户名长度需为3~36之间"
+    }
+}, {
+    "label": "下拉框",
+    "placeholder": "请输入名称",
+    "key": "name1",
+    "type": "a-select",
+    "initValue": 1,
+    "span": 10,
+    "childrenName": "a-select-option",
+    "options": [{
+        "value": 1,
+        "name": "xiaowang"
+    }, {
+        "value": 2,
+        "name": "xiaozhang"
+
+    }],
+    "rule": {
+        "required": true,
+        "message": "必填"
+    }
+}, {
+    "label": "下拉框多选",
+    "placeholder": "请输入名称",
+    "key": "name2",
+    "type": "a-select",
+    "initValue": 1,
+    "span": 10,
+    "mode": "multiple",
+    "childrenName": "a-select-option",
+    "options": [{
+        "value": 1,
+        "name": "xiaowang",
+        "disabled": true
+    }, {
+        "value": 2,
+        "name": "xiaozhang"
+
+    }],
+    "rule": {
+        "required": true,
+        "message": "必填"
+    }
+}, {
+    "label": "radiogroup",
+    "placeholder": "请输入名称",
+    "key": "name3",
+    "type": "a-radio-group",
+    "initValue": 1,
+    "span": 10,
+    "mode": "multiple",
+    "hasChildren": true,
+    "childrenName": "a-radio-button",
+    "options": [{
+        "value": 1,
+        "name": "xiaowang",
+        "disabled": true
+    }, {
+        "value": 2,
+        "name": "xiaozhang"
+
+    }],
+    "rule": {
+        "required": true,
+        "message": "必填"
+    }
+}]
