@@ -1,0 +1,10 @@
+{
+    "name": "my-chrome-plugin-demo",
+    "version": "1.0",
+    "description": "Build an Extension!",
+    "manifest_version": 2,
+    "chrome_url_overrides": {
+        "newtab": "popup.html"
+    }
+
+}

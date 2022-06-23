@@ -4,27 +4,36 @@
     <my-dropdown-table :allow-clear="true" v-model="selects" mode="multiple">
       <a-icon slot="suffixIcon" type="smile" />
     </my-dropdown-table>
+    <my-component v-model="name1"></my-component>
   </div>
 </template>
 
 <script>
 import Form from './components/Form.vue'
 import MyDropdownTable from './components/myDropdownTable.vue'
+import myComponent from './components/myComponent'
 export default {
   name: 'App',
   components: {
     Form,
-    MyDropdownTable
+    MyDropdownTable,
+    myComponent
   },
   data() {
     return {
-      selects: [1, 2]
+      selects: [1, 2],
+      name1: '1123'
     }
   },
   watch: {
     selects: {
       handler() {
         console.log('v-model传到父组件', this.selects)
+      }
+    },
+    name1: {
+      handler() {
+        console.log(this.name1)
       }
     }
   }

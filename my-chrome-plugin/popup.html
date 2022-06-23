@@ -1,0 +1,58 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="app">{{d}}</div>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="popup.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    d: 1
+                }
+            }
+        })
+        $.ajax({
+            url: "https://www.coderutil.com/api/resou/v1/weibo.jsonp", //请求的url地址
+            dataType: "jsonp", //返回格式为json
+            async: true, //请求是否异步，默认为异步，这也是ajax重要特性
+            data: {
+                "access-key": "d5d70b1a2c044eb44c1d9612a40d9c0a",
+                "secret-key": "9d6f820768287341bb68c7ab8676c645"
+            }, //参数值
+            type: "get", //请求方式
+            beforeSend: function () {
+                //请求前的处理
+            },
+            success: function (req) {
+                //请求成功时处理
+            },
+            complete: function () {
+                //请求完成的处理
+            },
+            error: function () {
+                //请求出错处理
+            }
+        })
+    </script>
+
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</body>
+
+</html>

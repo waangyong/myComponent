@@ -9,6 +9,6 @@ module.exports = {
   },
   rules: {
     "no-debugger": "off",
-    semi: 1, // 语句强制分号结尾
+    semi: 0, // 语句强制分号结尾
   },
 };
