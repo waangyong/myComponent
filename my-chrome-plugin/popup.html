@@ -5,54 +5,309 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- 引入样式 -->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="./css/element.index.css">
     <style>
+        body,
+        html {
+            padding: 0;
+            margin: 0;
+        }
 
+        #app {
+
+            /* background-image: url(./images/3.webp); */
+            height: 100%;
+        }
+
+        .wrap {
+            padding-top: 5vh;
+        }
+
+        .search {
+            text-align: center;
+            position: relative;
+            opacity: .7;
+        }
+
+        .list {
+            list-style: none;
+        }
+
+        .list li {
+            line-height: 44px;
+            color: #333;
+            border-bottom: 1px solid #f9f9f9;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            width: 100%;
+            align-items: center;
+        }
+
+        .hot {
+            background-color: #ff9406;
+        }
+
+        .new {
+            background-color: rgb(255, 56, 82);
+        }
+
+        .list li .type {
+            color: #fff;
+            display: inline-block;
+            height: 20px;
+            width: 20px;
+            border-radius: 4px;
+            line-height: 20px;
+            text-align: center;
+            background-color: #ff9406;
+        }
+
+        .content {
+            display: flex;
+            margin-top: 40px;
+            padding: 0 74px;
+            opacity: .8;
+        }
+
+        .content .box-card {
+            flex: 1;
+            height: 70vh;
+        }
+
+        .content .box-card:nth-child(2) {
+            margin-left: 24px;
+            margin-right: 24px;
+        }
+
+        .font {
+            flex: 1;
+        }
+
+        .img-1 {
+            background-image: url(./images/1.png);
+            width: 121px;
+            height: 121px;
+            /* object-fit: cover; */
+            background-position: 51% 67%;
+            border-radius: 5px;
+            position: absolute;
+            left: 22%;
+            top: -9px;
+            transform: scale(0.5);
+        }
+
+        .img-2 {
+            background-image: url(./images/4.webp);
+            width: 200px;
+            height: 200px;
+            /* object-fit: cover; */
+            background-position: 51% 67%;
+            border-radius: 5px;
+            transform: scale(0.5);
+            position: absolute;
+            top: -50px;
+
+        }
+
+        .img-5 {
+            background-image: url(./images/5.webp);
+            width: 200px;
+            height: 200px;
+            /* object-fit: cover; */
+            background-position: 51% 67%;
+            border-radius: 5px;
+            transform: scale(0.5);
+            position: absolute;
+            top: -50px;
+
+        }
+
+        .img-6 {
+            background-image: url(./images/6.webp);
+            width: 200px;
+            height: 200px;
+            /* object-fit: cover; */
+            background-position: 51% 67%;
+            border-radius: 5px;
+            transform: scale(0.5);
+            position: absolute;
+            top: -50px;
+
+        }
+
+        .title {
+            font-size: 14px;
+            display: flex;
+            height: 80px;
+            position: relative
+        }
+
+        .title span {
+            align-self: end;
+            margin-left: 200px;
+        }
+
+        .img-7 {
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            margin-right: 10px;
+
+        }
+
+        .img-7 .el-image__inner {
+            object-fit: cover;
+        }
     </style>
 </head>
 
 <body>
-    <div id="app">{{d}}</div>
-    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="popup.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+    <script src="./js/jquery.min.js"></script>
+    <!-- 引入组件库 -->
+    <script src="./js/vue.js"></script>
+    <script src="./js/element.index.js"></script>
+    <div id="app">
+        <div class="wrap">
+            <div class="search">
+                <p>xxx工具</p>
+                <div class="img-1"></div>
+                <el-input style="width: 40%;" placeholder="请输入内容">
+                    <el-button slot="append" icon="el-icon-search"></el-button>
+                </el-input>
+            </div>
+            <div class="content">
+                <el-card class="box-card">
+                    <div class="title">
+                        <div class="img-2"></div> <span>微博热搜</span>
+                    </div>
+                    <ul class="list">
+                        <li v-for="(item,index) in webData" @click='goPage(item)'>
+                            <el-image class="img-7" src='./images/7.webp'></el-image><span
+                                class="font">{{item.keyword}}</span><span v-if='item.isHot'
+                                class="type hot">热</span><span v-if='item.isNew' class="type new">新</span>
+                        </li>
+                    </ul>
+                </el-card>
+                <el-card class="box-card">
+                    <div class="title">
+                        <div class="img-5"></div>
+                        <span>知乎热搜</span>
+                    </div>
+                    <ul class="list">
+                        <li v-for="item in zhihuData">
+                            <el-image class="img-7" src='./images/8.webp'></el-image><span
+                                class="font">{{item.keyword}}</span>
+                        </li>
+                    </ul>
+                </el-card>
+                <el-card class="box-card">
+                    <div class="title">
+                        <div class="img-6"></div>
+                        <span>知乎热搜</span>
+                    </div>
+                    <ul class="list">
+                        <li v-for="item in baiduData">
+                            <el-image class="img-7" src='./images/9.webp'></el-image><span
+                                class="font">{{item.keyword}}</span>
+                        </li>
+                    </ul>
+                </el-card>
+            </div>
+        </div>
+    </div>
+
+
     <script>
         new Vue({
             el: '#app',
             data() {
                 return {
-                    d: 1
+                    webData: [],
+                    zhihuData: [],
+                    baiduData: []
                 }
-            }
-        })
-        $.ajax({
-            url: "https://www.coderutil.com/api/resou/v1/weibo.jsonp", //请求的url地址
-            dataType: "jsonp", //返回格式为json
-            async: true, //请求是否异步，默认为异步，这也是ajax重要特性
-            data: {
-                "access-key": "d5d70b1a2c044eb44c1d9612a40d9c0a",
-                "secret-key": "9d6f820768287341bb68c7ab8676c645"
-            }, //参数值
-            type: "get", //请求方式
-            beforeSend: function () {
-                //请求前的处理
             },
-            success: function (req) {
-                //请求成功时处理
+            created() {
+                $.ajax({
+                    url: "https://www.coderutil.com/api/resou/v1/weibo.jsonp", //请求的url地址
+                    dataType: "jsonp", //返回格式为json
+                    async: true, //请求是否异步，默认为异步，这也是ajax重要特性
+                    data: {
+                        "access-key": "d5d70b1a2c044eb44c1d9612a40d9c0a",
+                        "secret-key": "9d6f820768287341bb68c7ab8676c645"
+                    }, //参数值
+                    type: "get", //请求方式
+                    beforeSend: function () {
+                        //请求前的处理
+                    },
+                    success: (res) => {
+                        this.webData = res
+                        console.log(res)
+                    },
+                    complete: function () {
+                        //请求完成的处理
+                    },
+                    error: function () {
+                        //请求出错处理
+                    }
+                })
+                $.ajax({
+                    url: "https://www.coderutil.com/api/resou/v1/zhihu.jsonp", //请求的url地址
+                    dataType: "jsonp", //返回格式为json
+                    async: true, //请求是否异步，默认为异步，这也是ajax重要特性
+                    data: {
+                        "access-key": "d5d70b1a2c044eb44c1d9612a40d9c0a",
+                        "secret-key": "9d6f820768287341bb68c7ab8676c645"
+                    }, //参数值
+                    type: "get", //请求方式
+                    beforeSend: function () {
+                        //请求前的处理
+                    },
+                    success: (res) => {
+                        this.zhihuData = res
+                        console.log(res)
+                    },
+                    complete: function () {
+                        //请求完成的处理
+                    },
+                    error: function () {
+                        //请求出错处理
+                    }
+                })
+                $.ajax({
+                    url: "https://www.coderutil.com/api/resou/v1/baidu.jsonp", //请求的url地址
+                    dataType: "jsonp", //返回格式为json
+                    async: true, //请求是否异步，默认为异步，这也是ajax重要特性
+                    data: {
+                        "access-key": "d5d70b1a2c044eb44c1d9612a40d9c0a",
+                        "secret-key": "9d6f820768287341bb68c7ab8676c645"
+                    }, //参数值
+                    type: "get", //请求方式
+                    beforeSend: function () {
+                        //请求前的处理
+                    },
+                    success: (res) => {
+                        this.baiduData = res
+                        console.log(res)
+                    },
+                    complete: function () {
+                        //请求完成的处理
+                    },
+                    error: function () {
+                        //请求出错处理
+                    }
+                })
             },
-            complete: function () {
-                //请求完成的处理
-            },
-            error: function () {
-                //请求出错处理
+            methods: {
+                goPage(item) {
+                    window.open(item.url, '_blank')
+                }
             }
         })
     </script>
 
-    <!-- 引入样式 -->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-    <!-- 引入组件库 -->
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
 </body>
 
 </html>
