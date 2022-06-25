@@ -170,7 +170,7 @@
     <div id="app">
         <div class="wrap">
             <div class="search">
-                <p>xxx工具</p>
+                <p>xxx学习（摸鱼）工具</p>
                 <div class="img-1"></div>
                 <el-input style="width: 40%;" placeholder="请输入内容">
                     <el-button slot="append" icon="el-icon-search"></el-button>
@@ -195,7 +195,7 @@
                         <span>知乎热搜</span>
                     </div>
                     <ul class="list">
-                        <li v-for="item in zhihuData">
+                        <li v-for="item in zhihuData" @click='goPage(item)'>
                             <el-image class="img-7" src='./images/8.webp'></el-image><span
                                 class="font">{{item.keyword}}</span>
                         </li>
@@ -207,7 +207,7 @@
                         <span>知乎热搜</span>
                     </div>
                     <ul class="list">
-                        <li v-for="item in baiduData">
+                        <li v-for="item in baiduData" @click='goPage(item)'>
                             <el-image class="img-7" src='./images/9.webp'></el-image><span
                                 class="font">{{item.keyword}}</span>
                         </li>
